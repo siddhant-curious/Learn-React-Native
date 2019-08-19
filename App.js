@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View,Image } from 'react-native';
-import {LanguageTranslator} from './inputs.js'; 
+import {LanguageTranslator, ButtonBasics} from './inputs.js'; 
 
 
 const styles = StyleSheet.create({
@@ -120,7 +120,8 @@ export default class HelloWorldApp extends Component {
     return (
       // <FlexDimensionsBasics/>
       // <JustifyContentBasics/>
-      <LanguageTranslator/>
+      // <LanguageTranslator/>
+      <ButtonBasics />
       // <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       //   <Text>Hello, world!</Text>
       //   <Bananas />
