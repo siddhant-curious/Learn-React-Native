@@ -100,13 +100,25 @@ class FlexDimensionsBasics extends Component {
 }
 
 class JustifyContentBasics extends Component {
-  
+  render() {
+    return (
+      <View style={{flex:1,
+                    flexDirection:"row",
+                    justifyContent:"space-around"}}>
+      <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+      <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
+      <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+      </View>
+    ); 
+  }
+
 }
 
 export default class HelloWorldApp extends Component {
   render() {
     return (
-      <FlexDimensionsBasics/>
+      // <FlexDimensionsBasics/>
+      <JustifyContentBasics/>
       // <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       //   <Text>Hello, world!</Text>
       //   <Bananas />
