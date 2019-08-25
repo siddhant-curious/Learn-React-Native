@@ -1,136 +1,60 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View,Image } from 'react-native';
-import {LanguageTranslator, ButtonBasics, Touchables} from './inputs.js'; 
+import {TextInput, View, Text } from 'react-native'; 
 
+class AlertName extends Component {
 
-const styles = StyleSheet.create({
-  bigBlue: {
-    color: 'blue',
-    fontWeight: 'bold',
-    fontSize: 30,
-  },
-  red: {
-    color: 'red',
-  },
-});
-
-class Fashion extends Component {
-  render() {
-    return (
-      <View style={{alignItems:"center"}}>
-        <Text style={this.props.style.bigBlue}> Everything Big </Text>
-        <Text style={this.props.style.red}> Pure red </Text>
-        <Text style={[this.props.style.bigBlue, this.props.style.red]}> Red which inherited Blue properties </Text> 
-        <Text style={[this.props.style.red, this.props.style.bigBlue]}> Should be all Big Blue only </Text>
-      </View>
-    );
+  constructor(props){
+    super(props);
+    this.state = {title: "",body:"", count: "",target: ""};  
+    this.canIdothis = this.canIdothis.bind(this);
+    this.howAboutGeneric = this.howAboutGeneric.bind(this);
   }
-}
 
-class Bananas extends Component {
-  render() {
-    let pic = {
-      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-    };
-    return (
-      <Image source={pic} style={{width: 193, height: 110}}/>
-    );
+  // handleChange(event){
+  //   this.setState ={body: event.target.value};  
+  // }
+
+  // handleSubmit(){
+
+  // }
+
+  canIdothis(text){
+    // alert(text); 
+    this.setState({title:text}); 
   }
-}
 
-class HelloName extends Component {
+  howAboutGeneric(a){
+    this.setState({count : a.nativeEvent.eventCount, target: a.nativeEvent.target, body: a.nativeEvent.text}); 
+  }
+
   render(){
     return (
-      <View style={{alignItems:"center"}}>
-        <Text> Hey {this.props.name}! How you doing?  </Text>
+      <View > 
+        <Text > Title -  {this.state.title} </Text>
+        <TextInput
+        placeholder = "enter title here"
+            onChangeText =  {this.canIdothis} 
+            value = {this.state.title} />
+  
+        <Text > Body - {this.state.body} </Text>
+        <TextInput onChange={this.howAboutGeneric} />
+
+        <Text>
+          count : {this.state.count}
+       
+          target : {this.state.target}
+        </Text>
+
+
       </View>
     )
   }
 }
 
-class Blink extends Component {
-
-  componentDidMount(){
-    setInterval(() => (
-      this.setState(previousState => (
-        { showtext: !previousState.showtext }
-      ))
-    ), 1000);
-  }
-
-  state = {showtext: true};
-
-  render() {
-
-    if(!this.state.showtext){
-      return null; 
-    }
-
-    return (
-      <Text> {this.props.text} </Text>
-    );
-  }
-
-}
-
-class FixedDimensionsBasics extends Component {
-  render() {
-    return (
-      <View>
-        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
-        <View style={{width: 100, height: 100, backgroundColor: 'skyblue'}} />
-        <View style={{width: 150, height: 150, backgroundColor: 'steelblue'}} />
-      </View>
-    );
-  }
-}
-
-class FlexDimensionsBasics extends Component {
-  render() {
-    return (
-      // Try removing the `flex: 1` on the parent View.
-      // The parent will not have dimensions, so the children can't expand.
-      // What if you add `height: 300` instead of `flex: 1`?
-      <View style={{height: 300}}>
-        <View style={{flex: 1, backgroundColor: 'powderblue'}} />
-        <View style={{flex: 2, backgroundColor: 'skyblue'}} />
-        <View style={{flex: 3, backgroundColor: 'steelblue'}} />
-      </View>
-    );
-  }
-}
-
-class JustifyContentBasics extends Component {
-  render() {
-    return (
-      <View style={{flex:1,
-                    flexDirection:"row",
-                    justifyContent:"space-around"}}>
-      <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
-      <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
-      <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
-      </View>
-    ); 
-  }
-
-}
-
 export default class HelloWorldApp extends Component {
   render() {
     return (
-      // <FlexDimensionsBasics/>
-      // <JustifyContentBasics/>
-      // <LanguageTranslator/>
-      // <ButtonBasics />
-      <Touchables />
-      // <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      //   <Text>Hello, world!</Text>
-      //   <Bananas />
-      //   <HelloName name="siddhant"/>
-      //   <HelloName name="nice nice nice"/>
-      //   <Blink text="hehe"/>
-      //   <Fashion style={styles}/>
-      // </View>
+        <AlertName /> 
     );
   }
 }
